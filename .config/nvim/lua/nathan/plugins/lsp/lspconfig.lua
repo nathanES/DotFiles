@@ -71,7 +71,6 @@ return {
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
     -- Change the Diagnostic symbols in the sign column (gutter)
-    -- (not in youtube nvim video)
     local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
     for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
@@ -83,6 +82,18 @@ return {
       function(server_name)
         lspconfig[server_name].setup({
           capabilities = capabilities,
+        })
+      end,
+       -- Specific configuration for OmniSharp
+      ["omnisharp"] = function()
+        lspconfig.omnisharp.setup({
+          cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+          root_dir = lspconfig.util.root_pattern("*.csproj", "*.sln"),
+          capabilities = capabilities,
+          on_attach = function(client, bufnr)
+            -- Optionally disable certain OmniSharp features if needed
+            client.server_capabilities.semanticTokensProvider = false -- Example of disabling semantic tokens
+          end,
         })
       end,
       ["svelte"] = function()

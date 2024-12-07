@@ -37,6 +37,7 @@ return {
         "emmet_ls",
         "prismals",
         "pyright",
+        "omnisharp",
       },
     })
     mason_tool_installer.setup({

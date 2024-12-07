@@ -13,9 +13,13 @@ return {
     treesitter.setup({ -- enable syntax highlighting
       highlight = {
         enable = true,
+        disable = {"c_sharp"},
       },
       -- enable indentation
-      indent = { enable = true },
+      indent = { 
+        enable = true,
+        disable = {"c_sharp"},
+      },
       -- enable autotagging (w/ nvim-ts-autotag plugin)
       autotag = {
         enable = true,

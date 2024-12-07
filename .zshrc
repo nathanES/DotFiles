@@ -176,3 +176,8 @@ alias dc="docker compose"
 alias dn="dotnet"
 # Git
 alias g="git"
+# kubernete
+alias k="kubectl"
+
+# For monogame
+export PATH="/usr/local/share/dotnet/x64:$PATH"
